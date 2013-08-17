@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>C-Max Apps API Docs - Overview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body { padding-top: 60px; /* 60px to make the container go all the way
+      to the bottom of the topbar */ }
+    </style>
+    <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+      </script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <style>
+    </style>
+  </head>
+  <body id="">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="/" class="brand">C-Max Hybrid Vehicle Data API - Boing Boing Ingenuity 8/17/2013</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="span3">
+          <ul id="menu" class="nav nav-list" data-spy="affix">
+
+
+  
+ 
+  <li data-section="">
+    <a href="/overview">Overview</a>
+  </li>
+ 
+  
+ 
+  <li data-section="endpoints">
+    <a href="/endpoints">Endpoints</a>
+  </li>
+ 
+  
+ 
+  <li data-section="trace-streaming">
+    <a href="/trace-streaming">Streaming Tool</a>
+  </li>
+ 
+  
+ 
+  <li data-section="examples">
+    <a href="/examples">Examples</a>
+  </li>
+ 
+  
+
+<!--
+            <li data-section=""><a href="/">Overview</a></li>
+            <li data-section="trace-streaming"><a href="/trace-streaming/">Trace Streaming</a></li>
+            <li data-section="endpoints"><a href="/endpoints/">Endpoints</a>
+                <ul>
+                    <li>Endpoint 1</li>
+                    <li>Endpoint 2</li>
+                    <li>Endpoint 3</li>
+                </ul>
+            </li>
+            <li data-section="downloads"><a href="/downloads/">Downloads</a></li>
+            <li data-section="examples"><a href="/examples/">Examples</a></li>
+            <li data-section="hardware"><a href="/hardware/">Hardware</a></li>
+-->
+          </ul>
+        <img src="/assets/img/boing_boing_ingenuity.png" id="ingenuity_logo" data-spy="affix" />
+        </div>
+        <div class="span9">
+<div class="row">
+    <div class="span4">
+        <h2>C-Max Hybrid <br />Vehicle Data API</h2>
+        <span class="intro-block">The vehicle data API provides a <a href="/endpoints">RESTful web service</a> and a simulation of realtime OpenXC vehicle  <a href="/trace-streaming">data streaming</a> accompanied by a multi-view vehicle video stream. </span>
+    </div>
+    <div class="span5">
+        <video id="cmax_loop" autoplay loop>
+          <source src="/assets/media/cmax_loop.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        </video>
+    </div>
+</div>
+
+
+<h3>Quickstart to data consumption</h3>
+
+<dl id="quickstart">
+    <dt>Option 1. Get historical vehicle data</dt>
+
+    <dd><p>Here's an example GET request of driving at night for a range of time with engine_speed, odometer and fuel_consumed_since_restart as csv:</p>
+    
+<div class="highlight"><pre><code class="text">http://vehicledatacloud-pl475c6m.dotcloud.com/?sourceID=5&amp;startTime=1376012687.0299489&amp;endTime=1376013305.805495&amp;names=engine_speed,odometer,fuel_consumed_since_restart&amp;format=delimited&amp;apikey=[mykey]
+</code></pre></div>
+
+    <p>will return thousands of rows of OpenXC data:</p>
+    
+<div class="highlight"><pre><code class="json"><span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.236558</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tire_pressure_rear_right_status&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2366481</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;odometer&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">30607.294922000001</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.236727</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;steering_wheel_angle&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">100.55759399999999</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2368</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tire_pressure_front_left_status&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.241955</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;torque_at_transmission&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+</code></pre></div>
+
+
+Full <a href="/endpoints">historical vehicle data docs</a>.
+    </dd>
+
+    <dt>Option 2. Stream a trace file with socket.io</dt>
+    <dd>
+        <p>Add the socket.io client to your page</p>
+        
+<div class="highlight"><pre><code class="html">     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;[socket.io url]&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+        <span class="nt">&lt;script&gt;</span>
+            <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&quot;[socket.io url]&quot;</span><span class="p">,{</span>
+                                    <span class="nx">port</span><span class="o">:</span> <span class="mi">80</span><span class="p">}</span>
+            <span class="p">);</span>
+        <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+
+        <p>Then you can interact with the stream like this</p>
+
+        
+<div class="highlight"><pre><code class="html">        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;label&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;controls&#39;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">onClick =</span><span class="s">&quot;socket.emit(&#39;play&#39;)&quot;</span><span class="nt">&gt;</span>Play<span class="nt">&lt;/button&gt;</span> | 
+            <span class="nt">&lt;button</span> <span class="na">onClick =</span><span class="s">&quot;socket.emit(&#39;pause&#39;)&quot;</span><span class="nt">&gt;</span>Pause<span class="nt">&lt;/button&gt;</span> |
+            <span class="nt">&lt;button</span> <span class="na">onClick =</span><span class="s">&quot;socket.emit(&#39;play&#39;, prompt(&#39;Enter timestamp&#39;));&quot;</span><span class="nt">&gt;</span>Jump<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
+
+    </dd>
+
+    <p>You can also use the <a href="/trace-streaming">streaming tool</a> to control a feed with the video playback tools.</p>
+
+</dl>
+
+
+<h3>How the OpenXC data was captured</h3>
+
+<p>A small hardware module was plugged in to a 2013 Ford C-Max Hybrid's OBD-II port and then out to a Macbook. <a href="http://openxcplatform.com/">OpenXC</a> firmware and a Ford provided, vehicle specific binary was installed on the hardware module to create a vehicle interface. The vehicle interface translated messages coming from the C-Max's internal network in to the OpenXC format and captured as trace files on the Macbook. There is approximately 5 to 6 hours of vehicle data with various styles of driving in metro, urban, and rural environments.</p>
+
+<p>The data looks like this:</p>
+
+<div class="highlight"><pre><code class="json"><span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.236558</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tire_pressure_rear_right_status&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2366481</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;odometer&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">30607.294922000001</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.236727</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;steering_wheel_angle&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">100.55759399999999</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2368</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tire_pressure_front_left_status&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.241955</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;torque_at_transmission&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2634389</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fuel_consumed_since_restart&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.77858099999999997</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.270546</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;steering_wheel_angle&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">100.55759399999999</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.2720621</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;odometer&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">30607.294922000001</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.3123419</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;accelerator_pedal_position&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mf">1375905861.3124759</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;engine_speed&quot;</span><span class="p">,</span> <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1160</span><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+<ul id="drive_gallery">
+    <li><img src="/assets/img/c-max_setup.jpeg"/></li>
+    <li><img src="/assets/img/c-max_setup_2.png"/></li>
+    <li><img src="/assets/img/c-max_setup_3.png"/></li>
+    <li><img src="/assets/img/c-max_setup_4.png"/></li>
+    <li><img src="/assets/img/c-max_setup_7.png"/></li>
+    <li><img src="/assets/img/c-max_setup_8.png"/></li>
+</ul>
+
+
+<div style="clear: both"></div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <style>
+      
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/behaviors.js"></script>
+
+    <script>
+      $('#menu [data-section=""]').addClass('active');
+    </script>
+
+  </body>
+</html>

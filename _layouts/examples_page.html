@@ -1,0 +1,53 @@
+---
+layout: page
+---
+
+<!--
+<video controls style="width: 100%;">
+  <source src="/assets/media/cmax_loop.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+</video>
+-->
+<!--
+
+	<div id='label'></div>
+	<div id='controls'>
+		<button onClick = "socket.emit('play')">Play</button> | 
+		<button onClick = "socket.emit('pause')">Pause</button> |
+		<button onClick = "socket.emit('play', prompt('Enter timestamp'));">Jump</button>
+	</div>
+	<div id='map-canvas'></div>
+
+	<script src="http://openxc.herokuapp.com/socket.io/socket.io.js"></script>
+    <script>
+
+        var socket = io.connect("http://openxc.herokuapp.com",{
+                                port: 80}
+        );
+			
+		//------- On Connect --------//
+		socket.on('connect', function(){
+			var key = prompt('Enter API Key');
+			socket.emit('init', key);
+		});
+		
+		socket.on('ready', function(){
+			console.log('ready');
+		});
+
+		//------- On Output --------//
+		socket.on('output', function(data){
+			console.log('output: ', data)
+        });
+
+		//------- on message --------//
+		socket.on('message', function(msg){
+            console.log('message: ', msg);
+		});
+
+		//------- on status --------//
+		socket.on('status', function(status){
+			console.log('status: ', status);
+		});
+
+	</script>
+-->
