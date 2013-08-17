@@ -126,11 +126,55 @@ Full <a href="/endpoints">historical vehicle data docs</a>.
     <dd>
         <p>Add the socket.io client to your page</p>
         
-<div class="highlight"><pre><code class="html">     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;[socket.io url]&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><code class="html">     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://playbacktool-pl475c6m.dotcloud.com/socket.io/socket.io.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
         <span class="nt">&lt;script&gt;</span>
-            <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&quot;[socket.io url]&quot;</span><span class="p">,{</span>
+            <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">&quot;http://playbacktool-pl475c6m.dotcloud.com&quot;</span><span class="p">,{</span>
                                     <span class="nx">port</span><span class="o">:</span> <span class="mi">80</span><span class="p">}</span>
             <span class="p">);</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="s1">&#39;[apikey]&#39;</span><span class="p">);</span> <span class="c1">//We&#39;ll provide your API key</span>
+            <span class="p">});</span>
+            
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;ready&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dataSource</span><span class="p">){</span> 
+            <span class="cm">/* dataSource is the name of one of the five drives:</span>
+<span class="cm">               bb_c-max_day_1_part_1</span>
+<span class="cm">               bb_c-max_day_1_part_2</span>
+<span class="cm">               bb_c-max_day_2_night</span>
+<span class="cm">               bb_c-max_day_2_part_1</span>
+<span class="cm">               bb_c-max_day_2_part_2</span>
+<span class="cm">            */</span>
+            <span class="p">}</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span> 
+                <span class="c1">//This where the OpenXC data streams in as data.records. </span>
+                <span class="c1">// Here&#39;s an example usage with jquery</span>
+                <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">records</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">obj</span><span class="p">){</span>
+                    <span class="nx">dataPoints</span><span class="p">[</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>         
+                <span class="p">});</span>
+                
+                <span class="nx">lastDataTimestamp</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">records</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">timestamp</span><span class="p">;</span>
+                <span class="nx">content</span> <span class="o">=</span> <span class="s2">&quot;&lt;div&gt;timestamp: &lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nx">lastDataTimestamp</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt;&quot;</span><span class="p">;</span>
+                
+                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">item</span> <span class="k">in</span> <span class="nx">dataPoints</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">dataPoints</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">item</span><span class="p">)){</span>
+                        <span class="nx">content</span> <span class="o">+=</span> <span class="s2">&quot;&lt;div&gt;&quot;</span> <span class="o">+</span> <span class="nx">item</span> <span class="o">+</span> <span class="s2">&quot;: &lt;b&gt;&quot;</span> <span class="o">+</span> <span class="nx">dataPoints</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt;&lt;/div&gt;&quot;</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">};</span>
+                
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div#label&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span> <span class="c1">//For our example we&#39;re adding the stream to div#label</span>
+            <span class="p">}</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">){</span> <span class="c1">//general messages from the stream</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Message: &#39;</span><span class="p">,</span> <span class="nx">msg</span><span class="p">);</span> 
+            <span class="p">});</span>
+
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span> <span class="c1">// Messages of any change in the state of the connection</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Status: &#39;</span><span class="p">,</span> <span class="nx">s</span><span class="p">);</span>
+                    <span class="nx">status</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+            <span class="p">});</span>
+
         <span class="nt">&lt;/script&gt;</span>
 </code></pre></div>
 
