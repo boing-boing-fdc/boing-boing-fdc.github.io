@@ -12,7 +12,7 @@ Here's an example request of driving at night for a range of time with engine_sp
 | sourceID      | 1, 2, 3, 4, 5 | Yes       |  Each number represents a trace file. Drive descriptions are here     |
 | names      | openXC keys<br>signals are here     |   No     |   Limits response to names provided. delimit multiple names with a comma   |
 | limit | integer      |    No     |   limit the number of rows of data return  |
-| format | delimited, json, jsonp      |   No     |   "callback" is the jsonp callback parameter. If not set, "?" is the callback function  |
+| format | delimited, html, json, jsonp      |   No     |   "callback" is the jsonp callback parameter. If not set, "?" is the callback function  |
 | startTime | openXC timestamp (epoch)      |  No |   Works by itself or with endTime to create a range  |
 | endTime | openXC timestamp (epoch)      |    No    | Works by itself or with startTime to create a range    |
 
