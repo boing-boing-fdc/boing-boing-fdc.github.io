@@ -15,6 +15,7 @@ Here's an example request of driving at night for a range of time with engine_sp
 | format | delimited, html, json, jsonp      |   No     |   "callback" is the jsonp callback parameter. If not set, "?" is the callback function  |
 | startTime | openXC timestamp (epoch)      |  No |   Works by itself or with endTime to create a range  |
 | endTime | openXC timestamp (epoch)      |    No    | Works by itself or with startTime to create a range    |
+| apikey | ask the event staff for your apikey  |    yes    |  provides access to data   |
 
 ### Parameter: sourceID
 
