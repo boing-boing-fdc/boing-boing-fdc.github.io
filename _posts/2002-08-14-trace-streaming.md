@@ -28,4 +28,4 @@ section: trace-streaming
 
 <div id="outputContainer" class='section'></div> -->
 
-<iframe src="http://vehicledatacloud-pl475c6m.dotcloud.com/playback/" width="100%"></iframe>
+<iframe src="http://vehicledatacloud-pl475c6m.dotcloud.com/playback/" width="100%" height="800"></iframe>
