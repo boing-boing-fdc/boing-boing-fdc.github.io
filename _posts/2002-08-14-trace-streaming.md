@@ -3,7 +3,7 @@ layout: page
 title: Streaming Tool
 section: trace-streaming
 ---
-<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script> 
+<!-- <script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script> 
 <script type="text/javascript" src="http://playbacktool-pl475c6m.dotcloud.com/socket.io/socket.io.js"></script>
 <script>var socketServer = "http://playbacktool-pl475c6m.dotcloud.com";</script>
 <script src="/assets/js/videoControl.js" type="text/javascript"></script>
@@ -26,4 +26,6 @@ section: trace-streaming
 	</object>
 </div>
 
-<div id="outputContainer" class='section'></div>
+<div id="outputContainer" class='section'></div> -->
+
+<iframe src="http://vehicledatacloud-pl475c6m.dotcloud.com/playback/" width="100%"></iframe>
