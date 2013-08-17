@@ -178,6 +178,23 @@ Full <a href="/endpoints">historical vehicle data docs</a>.
                     <span class="nx">status</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
             <span class="p">});</span>
 
+
+            <span class="cm">/* </span>
+<span class="cm">               start the stream. This is the data epoch timestamp, </span>
+<span class="cm">               and has nothing to do with the seek time in the video. </span>
+<span class="cm">               If the timestamp is left out, it will just play from the current timestamp. </span>
+<span class="cm">               If a value is out of bounds or just formatted wrong (like not a number), </span>
+<span class="cm">               it will go to the beginning of the stream for that dataSource </span>
+<span class="cm">            */</span>
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;play&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">optional</span> <span class="nx">epoch</span> <span class="nx">timestamp</span><span class="o">&gt;</span><span class="p">)</span> 
+            
+            <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;pause&#39;</span><span class="p">);</span> <span class="c1">//pause the data stream</span>
+
+            <span class="cm">/* </span>
+<span class="cm">               NOTE: play, pause, and setDataSource are not required and can be set</span>
+<span class="cm">               from the video playback tool </span>
+<span class="cm">            */</span>
+
         <span class="nt">&lt;/script&gt;</span>
 </code></pre></div>
 
